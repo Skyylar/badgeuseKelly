@@ -9,6 +9,8 @@
 import UIKit
 
 extension UIViewController {
+    
+    // Fucntions to dismiss keyvboard on tap
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -30,28 +32,26 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var PickerView: UIPickerView!
     @IBOutlet weak var ButtonSend: UIButton!
     
-    @IBOutlet var rwefsdc: UILabel!
-    
-    
-    
-    
+    // Set number of columns
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    // Set labels of pickerview
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return promoSelected.promotab[row] as! String
     }
     
+    // Set number of labels
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return promoSelected.promotab.count
     }
     
+    // Give the selected choice
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         promoSelected.promotion = promoSelected.promotab[row] as! String
         promoSelected.id = row
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +60,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // Buton to deconnect
     @IBAction func decoButton(_ sender: Any) {
         nbconnection.countco = 1
+        
+        // Clear cokies stored at connection
         let cookieStore = HTTPCookieStorage.shared
         for cookie in cookieStore.cookies ?? [] {
             print(cookie)

@@ -10,42 +10,42 @@ import UIKit
 
 class LoginController: UIViewController {
     
-   
+    
     @IBOutlet weak var inputLogin: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
     
-   
-        
     override func viewDidLoad() {
         super.viewDidLoad()
-        var string2 = "few -few-ffewfwesdc fwe"
-        var string3 = String(string2.characters.filter {$0 != " "})
-        print(String(string3.characters.filter {$0 != "-"}))
-        // Do any additional setup after loading the view, typically from a nib.
         self.hideKeyboardWhenTappedAround()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func connection(_ sender: Any) {
+        
+        self.label.center = CGPoint(x: 90, y: 100)
+        self.label.textAlignment = .center
+        self.label.backgroundColor = UIColor.red
+        self.label.textColor = UIColor.white
+        self.label.font = UIFont(name: self.label.font.fontName, size: 23)
+        self.label.text = "Not Allowed"
+        
         let userLogin: String = inputLogin.text!
         let userPass:  String = inputPassword.text!
         
         if (userLogin.isEmpty || userPass.isEmpty)
         {
-        
-            // display alert on empty field
             
+            // display alert
             let alertController = UIAlertController(title: "Alert", message: "All fields required", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .cancel)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             return
         }
-    
         let json = ["login": userLogin, "password": userPass]
         
         //create the url with URL
@@ -54,16 +54,14 @@ class LoginController: UIViewController {
         //create the session object
         let session = URLSession.shared
         
-                
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url)
-        request.httpMethod = "POST" //set http method as POST
-        
+        request.httpMethod = "POST"
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-            
         } catch let error {
             print(error.localizedDescription)
+            self.view.addSubview(self.label)
         }
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -71,77 +69,62 @@ class LoginController: UIViewController {
         
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            
             guard error == nil else {
                 return
             }
-            
             guard let data = data else {
                 return
             }
-            
             do {
-                //create json object from data
-             /*   if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                    let test = json["groups"] as? [[String: Any]] {
-                    print(json)
-                    for groups in test {
-                        print(groups)
-                    }
-                }*/
-                
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     if (json.count != 0) {
-                        
+                        // Check if the user have an accompte on etna
                         let login : String = json["login"] as! String
                         let url = URL(string: "https://auth.etna-alternance.net/api/users/\(login)")
                         URLSession.shared.dataTask(with: url!, completionHandler: {
                             (alert, response, error) in
                             if(error != nil){
                                 print("error")
+                                self.view.addSubview(self.label)
                             }else{
                                 do{
                                     
+                                    // Try the group of the user
                                     if let json = try JSONSerialization.jsonObject(with: data) as? [String: AnyObject],
                                         let groups = (json["groups"] as? NSArray) {
                                         let student: String = "student"
                                         for group in groups {
                                             if ((group as! String).caseInsensitiveCompare(student) == ComparisonResult.orderedSame) {
-                                                self.performSegue(withIdentifier: "MainPage", sender: self)
                                                 nbconnection.countco = 2
-                                                
+                                                self.performSegue(withIdentifier: "MainPage", sender: self)
                                             }
                                         }
                                     }
-                                   /* let variable = try JSONSerialization.jsonObject(with: alert!, options:.allowFragments) as! [String : AnyObject]
-                                    
-                                    
-                                    let test = (variable["roles"] as! NSArray)[0] as! String
-                                    let student: String = "student"
-                                    print(test)
-                                    if test == student {
-                                        print(json)
-                                    }
                                     else {
-                                        print("ERROR")
+                                        self.view.addSubview(self.label)
                                     }
-                                        */
-                                    
                                 }catch let error as NSError{
                                     print(error)
+                                    self.view.addSubview(self.label)
                                 }
                             }
                         }).resume()
                     }
+                    else {
+                        self.view.addSubview(self.label)
+                    }
                 }
-
+                else {
+                    self.view.addSubview(self.label)
+                }
                 
                 
             } catch let error {
                 print(error.localizedDescription)
+                self.view.addSubview(self.label)
             }
         })
         task.resume()
     }
-
+    
 }

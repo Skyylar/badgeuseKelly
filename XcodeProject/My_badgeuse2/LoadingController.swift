@@ -16,12 +16,15 @@ struct promoSelected {
 
 class LoadingController: UIViewController {
     
-     override func viewDidAppear(_ animated: Bool) {
-            // Do any additional setup after loading the view, typically from a nib.
-            self.hideKeyboardWhenTappedAround()
-            if (nbconnection.countco != 1) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Search all promo on trombi
+        self.hideKeyboardWhenTappedAround()
+        
+        if (nbconnection.countco != 1) {
+            if (promoSelected.promotab.isEmpty) {
                 let url = URL(string: "https://prepintra-api.etna-alternance.net/trombi")
-                
                 URLSession.shared.dataTask(with: url!, completionHandler: {
                     (data, response, error) in
                     if(error != nil){
@@ -31,9 +34,10 @@ class LoadingController: UIViewController {
                         do {
                             let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String : AnyObject]
                             
-                            var x = 2016
+                            var x = 2017
                             var wall: Array<Any> = []
                             var id: Array<Int> = []
+                            var tmp: String = "t"
                             
                             while (x < 2022) {
                                 let test = (json["\(x)"] as! NSArray)
@@ -41,17 +45,21 @@ class LoadingController: UIViewController {
                                     let jsonData = try JSONSerialization.data(withJSONObject: trombi, options: JSONSerialization.WritingOptions.prettyPrinted)
                                     var date = try JSONSerialization.jsonObject(with: jsonData, options:.allowFragments) as! [String : AnyObject]
                                     
-                                    // GET WALL NAME
-                                    wall.append(date["wall_name"])
-                                    // Get ID
-                                    id.append(date["id"] as! Int)
-                                    
+                                    let wall_name: String = date["wall_name"] as! String
+                                    if tmp != wall_name {
+                                        
+                                        // GET WALL NAME
+                                        wall.append(date["wall_name"]!)
+                                        
+                                        // Get ID
+                                        id.append(date["id"] as! Int)
+                                        tmp = wall_name
+                                    }
                                 }
                                 x = x + 1
                             }
                             promoSelected.promotab = wall
                             promoSelected.idpromotab = id
-                            self.performSegue(withIdentifier: "LinkStart", sender: self)
                         }
                         catch let error as NSError{
                             print(error)
@@ -59,13 +67,21 @@ class LoadingController: UIViewController {
                     }
                 }).resume()
             }
+            else {
+                self.performSegue(withIdentifier: "LinkStart", sender: self)
+            }
+        }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if promoSelected.promotab.isEmpty == false {
+            self.performSegue(withIdentifier: "LinkStart", sender: self)
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    
 }
