@@ -100,7 +100,6 @@
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="ButtonSend" destination="Ep4-zi-FcH" id="l79-G3-fgw"/>
-                        <outlet property="rwefsdc" destination="BAV-VC-4HS" id="cZu-Mu-jhM"/>
                         <segue destination="LqK-I7-sAs" kind="presentation" identifier="LoginView" id="ySp-nK-T5C"/>
                     </connections>
                 </viewController>
