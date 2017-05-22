@@ -63,16 +63,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     // Buton to deconnect
-    @IBAction func decoButton(_ sender: Any) {
-        nbconnection.countco = 1
+//    @IBAction func decoButton(_ sender: Any) {
+//        nbconnection.countco = 1
         
         // Clear cokies stored at connection
-        let cookieStore = HTTPCookieStorage.shared
-        for cookie in cookieStore.cookies ?? [] {
-            print(cookie)
-            cookieStore.deleteCookie(cookie)
-        }
-        self.performSegue(withIdentifier: "LoginView", sender: self)
+//        let cookieStore = HTTPCookieStorage.shared
+//        for cookie in cookieStore.cookies ?? [] {
+//            print(cookie)
+//            cookieStore.deleteCookie(cookie)
+//        }
+//        self.performSegue(withIdentifier: "LoginView", sender: self)
+//    }
+  
+    @IBAction func	exitButton(sender : UIStoryboardSegue) {
+        nbconnection.countco = 1
+        // Clear cokies stored at connection
+                let cookieStore = HTTPCookieStorage.shared
+                for cookie in cookieStore.cookies ?? [] {
+                    print(cookie)
+                    cookieStore.deleteCookie(cookie)
+                }
+                self.performSegue(withIdentifier: "LoginView", sender: self)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
