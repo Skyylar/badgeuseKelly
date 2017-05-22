@@ -13,7 +13,7 @@ class LoginController: UIViewController {
     
     @IBOutlet weak var inputLogin: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 30))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +24,19 @@ class LoginController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func unwindAll (_: UIStoryboardSegue) {
+    
+    }
+    
+    @IBOutlet weak var errorLog: UILabel!
+    
     @IBAction func connection(_ sender: Any) {
-        
-        self.label.center = CGPoint(x: 90, y: 100)
-        self.label.textAlignment = .center
-        self.label.backgroundColor = UIColor.red
-        self.label.textColor = UIColor.white
-        self.label.font = UIFont(name: self.label.font.fontName, size: 23)
-        self.label.text = "Not Allowed"
         
         let userLogin: String = inputLogin.text!
         let userPass:  String = inputPassword.text!
         
         if (userLogin.isEmpty || userPass.isEmpty)
         {
-            
             // display alert
             let alertController = UIAlertController(title: "Alert", message: "All fields required", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .cancel)
@@ -50,10 +48,12 @@ class LoginController: UIViewController {
         
         //create the url with URL
         let url = URL(string: "https://auth.etna-alternance.net/identity")!
-        
+
         //create the session object
-        let session = URLSession.shared
-        
+        let urlconfig = URLSessionConfiguration.default
+        urlconfig.timeoutIntervalForRequest = 5
+        urlconfig.timeoutIntervalForResource = 20
+        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -61,7 +61,7 @@ class LoginController: UIViewController {
             request.httpBody = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
         } catch let error {
             print(error.localizedDescription)
-            self.view.addSubview(self.label)
+            self.messageError(message: "Server error")
         }
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -85,10 +85,9 @@ class LoginController: UIViewController {
                             (alert, response, error) in
                             if(error != nil){
                                 print("error")
-                                self.view.addSubview(self.label)
-                            }else{
-                                do{
-                                    
+                                self.messageError(message : "Server error")
+                            } else {
+                                do {
                                     // Try the group of the user
                                     if let json = try JSONSerialization.jsonObject(with: data) as? [String: AnyObject],
                                         let groups = (json["groups"] as? NSArray) {
@@ -101,30 +100,37 @@ class LoginController: UIViewController {
                                         }
                                     }
                                     else {
-                                        self.view.addSubview(self.label)
+                                        self.messageError(message : "Server error")
                                     }
                                 }catch let error as NSError{
                                     print(error)
-                                    self.view.addSubview(self.label)
+                                    self.messageError(message : "Server error")
                                 }
                             }
                         }).resume()
                     }
                     else {
-                        self.view.addSubview(self.label)
+                        self.messageError(message : self.errorLog.text!)
                     }
                 }
                 else {
-                    self.view.addSubview(self.label)
+                    self.messageError(message : "Server error")
                 }
-                
-                
             } catch let error {
                 print(error.localizedDescription)
-                self.view.addSubview(self.label)
+                self.messageError(message: "Server error")
             }
         })
         task.resume()
+    }
+    
+    func messageError(message : String) {
+        self.errorLog.text = message
+        self.errorLog.isHidden = !self.errorLog.isHidden
+        let when = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.errorLog.isHidden = !self.errorLog.isHidden
+        }
     }
     
 }

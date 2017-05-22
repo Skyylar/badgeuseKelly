@@ -22,7 +22,7 @@ class CloseComptViewController: UIViewController {
                 var promo1 = String((promo as! String).characters.filter {$0 != "-"})
                 var promo2 = String(promo1.characters.filter {$0 != " "})
                 let promo3 = String(promo2.characters.filter {$0 != "'"})
-                let myURLString = "http://178.62.123.239/api.php?closecompte=true&promo=\(promo3)"
+                let myURLString = "http://178.62.123.239/badgeuse/api.php?closecompte=true&promo=\(promo3)"
                 if let myURL = NSURL(string: myURLString) {
                     do {
                         let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
@@ -59,6 +59,9 @@ class CloseComptViewController: UIViewController {
         super.viewDidAppear(true)
         if !whoAreClosed.imClose.isEmpty {
             self.performSegue(withIdentifier: "imClose", sender: self)
+        }
+        else {
+         viewDidLoad()   
         }
     }
     

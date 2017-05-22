@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "936AE0D41E9D64DD00D4D789"
+               BuildableName = "My_badgeuse2.app"
+               BlueprintName = "My_badgeuse2"
+               ReferencedContainer = "container:My_badgeuse2.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "936AE0D41E9D64DD00D4D789"
+            BuildableName = "My_badgeuse2.app"
+            BlueprintName = "My_badgeuse2"
+            ReferencedContainer = "container:My_badgeuse2.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>

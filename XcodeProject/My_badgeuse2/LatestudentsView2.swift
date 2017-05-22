@@ -11,7 +11,7 @@ import UIKit
 
 class TableView2Controller: UITableViewController {
 
-    let empty: [String] = ["Not Loaded"]
+    let empty: [String] = ["Error while loading file"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

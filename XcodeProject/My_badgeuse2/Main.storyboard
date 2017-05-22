@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LqK-I7-sAs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LqK-I7-sAs">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -92,7 +92,8 @@
                     <navigationItem key="navigationItem" title="Home" id="JNu-rW-E0H">
                         <barButtonItem key="rightBarButtonItem" title="Deconnection" id="dRI-XK-Az4">
                             <connections>
-                                <segue destination="d0q-Zz-RXJ" kind="unwind" unwindAction="exitButtonWithSender:" id="1Un-rg-UP7"/>
+                                <action selector="decoButton:" destination="zVa-qS-aUE" id="zrL-XA-efc"/>
+                                <segue destination="d0q-Zz-RXJ" kind="unwind" unwindAction="unwindAll:" id="yBs-kC-ELQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -100,8 +101,6 @@
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="ButtonSend" destination="Ep4-zi-FcH" id="l79-G3-fgw"/>
-                        <outlet property="exitButton" destination="dRI-XK-Az4" id="zmQ-tc-X0h"/>
-                        <segue destination="LqK-I7-sAs" kind="presentation" identifier="LoginView" id="ySp-nK-T5C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6l-B4-8YW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -275,6 +274,13 @@
                                     <action selector="connection:" destination="Ine-j2-Z57" eventType="touchUpInside" id="MKB-fv-iGI"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login ou mot de pass incorecte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJI-jD-4Dh">
+                                <rect key="frame" x="206" y="241" width="356" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.93059724569320679" green="0.27452105283737183" blue="0.18561512231826782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -284,6 +290,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="errorLog" destination="tJI-jD-4Dh" id="8zH-c3-0gN"/>
                         <outlet property="inputLogin" destination="9gc-9M-8oc" id="iOg-cW-FeA"/>
                         <outlet property="inputPassword" destination="mYv-Jf-I41" id="D0R-Ga-NEQ"/>
                         <segue destination="NXL-kq-Irr" kind="presentation" identifier="MainPage" id="ZPo-3W-yts"/>
@@ -291,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cej-yI-lt8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1579" y="414"/>
+            <point key="canvasLocation" x="-1579.6875" y="413.671875"/>
         </scene>
         <!--Home-->
         <scene sceneID="Jo5-Ku-dFL">

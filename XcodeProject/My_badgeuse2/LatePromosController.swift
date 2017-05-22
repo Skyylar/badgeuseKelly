@@ -52,7 +52,7 @@ class TableViewController: UITableViewController {
         let promo3 = String(promo2.characters.filter {$0 != "'"})
         
         let bool = false
-        let myURLString = "http://178.62.123.239/api.php?badgeuse=\(bool)&promo=\(promo3)"
+        let myURLString = "http://178.62.123.239/badgeuse/api.php?badgeuse=\(bool)&promo=\(promo3)"
         
         if let myURL = NSURL(string: myURLString) {
             do {

@@ -191,7 +191,7 @@ class ScanController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     var promo2 = String(promo.characters.filter {$0 != " "})
                     let promo3 = String(promo2.characters.filter {$0 != "'"})
                     let logine = login?[0]
-                    let url : String = "http://178.62.123.239/api.php?update=true&login=\(logine!)&promo=\(promo3)"
+                    let url : String = "http://178.62.123.239/badgeuse/api.php?update=true&login=\(logine!)&promo=\(promo3)"
                     if let myUrl = NSURL(string: url) {
                         do {
                             _ = try NSString(contentsOf: myUrl as URL, encoding: String.Encoding.utf8.rawValue)
