@@ -46,8 +46,19 @@ class CloseComptViewController: UIViewController {
                     
                     do {
                         let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
-                        // Implement THE code HERE
-                        print(myHTMLString)
+                        // THE NEW code HERE
+                        var StringRecordedArr = myHTMLString?.components(separatedBy: " ")
+                        var x = 0
+                        //GET ALL student in one ARRAY
+                        for test in StringRecordedArr! {
+                            if test == "" {
+                                x = x + 1
+                            }
+                            else {
+                                wall_close.append(test)
+                            }
+                        }
+                        print(wall_close)
                         // END OF the NEW CODE
                         
                     } catch let error {
@@ -56,28 +67,6 @@ class CloseComptViewController: UIViewController {
                 })
                 task.resume()
                 
-                /*if let myURL = NSURL(string: myURLString) {
-                    do {
-                        let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
-                        var StringRecordedArr = myHTMLString.components(separatedBy: " ")
-                        var x = 0
-                        for close in StringRecordedArr {
-                            if close == "" {
-                                StringRecordedArr.remove(at: x)
-                                x = x + 1
-                            }
-                            else {
-                                x = x + 1
-                            }
-                        }
-                        //GET ALL student in one ARRAY
-                        for test in StringRecordedArr {
-                            wall_close.append(test)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }*/
             }
             whoAreClosed.imClose = wall_close
             self.performSegue(withIdentifier: "imClose", sender: self)
