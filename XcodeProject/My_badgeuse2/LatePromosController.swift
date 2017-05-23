@@ -54,59 +54,40 @@ class TableViewController: UITableViewController {
         let bool = false
         let myURLString = "http://178.62.123.239/badgeuse/api.php?badgeuse=\(bool)&promo=\(promo3)"
         let url = URL(string: myURLString)!
-        
-        let session = URLSession.shared
-        
+        let urlconfig = URLSessionConfiguration.default
+        urlconfig.timeoutIntervalForRequest = 3
+        urlconfig.timeoutIntervalForResource = 20
+        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url)
         request.httpMethod = "POST" //set http method as POST
-        
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            
             guard error == nil else {
                 return
             }
-            
             guard let data = data else {
                 return
             }
-            
-            do {
-                let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
-                //THE new Code HERE
-                var wall_late: Array<Any> = []
-                
-                var StringRecordedArr = myHTMLString?.components(separatedBy: " ")
-                var x = 0
-                //GET ALL student in one ARRAY
-                for test in StringRecordedArr! {
-                    if test == "" {
-                        x = x + 1
-                    }
-                    else {
-                        wall_late.append(test)
-                    }
+            let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
+            //THE new Code HERE
+            var wall_late: Array<Any> = []
+            let StringRecordedArr = myHTMLString?.components(separatedBy: " ")
+            var x = 0
+            //GET ALL student in one ARRAY
+            for test in StringRecordedArr! {
+                if test == "" {
+                    x = x + 1
                 }
-                // END of the Code
-                
-            } catch let error {
-                print(error.localizedDescription)
+                else {
+                    wall_late.append(test)
+                }
             }
+            promosForLate.choosen = StringRecordedArr!
+            print("gref")
+            self.performSegue(withIdentifier: "showlate", sender: nil)
+            // END of the Code
         })
         task.resume()
-        
-        /*
-         StringRecordedArr is the FINAL ARRAY
-         promosForLate.choosen = StringRecordedArr
-         
-         } catch {
-         print(error)
-         }
-         self.performSegue(withIdentifier: "showlate", sender: self)
-         }
-         else {
-         print("nope")
-         }*/
     }
 }

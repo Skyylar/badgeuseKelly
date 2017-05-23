@@ -67,9 +67,6 @@ class LoadingController: UIViewController {
                     }
                 }).resume()
             }
-            else {
-                self.performSegue(withIdentifier: "LinkStart", sender: self)
-            }
         }
         
     }

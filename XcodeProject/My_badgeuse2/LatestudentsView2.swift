@@ -15,7 +15,6 @@ class TableView2Controller: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("oui")
     }
 
     // Set number of labels

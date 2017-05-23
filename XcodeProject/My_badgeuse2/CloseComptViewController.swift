@@ -47,10 +47,10 @@ class CloseComptViewController: UIViewController {
                     do {
                         let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
                         // THE NEW code HERE
-                        var StringRecordedArr = myHTMLString?.components(separatedBy: " ")
+                        let StringRecorded = myHTMLString?.components(separatedBy: " ")
                         var x = 0
                         //GET ALL student in one ARRAY
-                        for test in StringRecordedArr! {
+                        for test in StringRecorded! {
                             if test == "" {
                                 x = x + 1
                             }
@@ -83,7 +83,7 @@ class CloseComptViewController: UIViewController {
             self.performSegue(withIdentifier: "imClose", sender: self)
         }
         else {
-         viewDidLoad()   
+         viewDidLoad()
         }
     }
     

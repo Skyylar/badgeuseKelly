@@ -17,6 +17,11 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.clear()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.clear()
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +47,8 @@ class LoginController: UIViewController {
         }
         let json = ["login": userLogin, "password": userPass]
         
+        self.inputLogin.text = ""
+        self.inputPassword.text = ""
         //create the url with URL
         let url = URL(string: "https://auth.etna-alternance.net/identity")!
 
@@ -94,6 +101,10 @@ class LoginController: UIViewController {
                                                 self.performSegue(withIdentifier: "MainPage", sender: self)
                                             }
                                         }
+                                        print(nbconnection.countco)
+                                        if (nbconnection.countco == 1) {
+                                            self.messageError(message: "Vous n'êtes pas autorisés")
+                                        }
                                     }
                                     else {
                                         self.messageError(message : "Server error")
@@ -129,4 +140,11 @@ class LoginController: UIViewController {
         }
     }
     
+    func clear() {
+        let cookieStore = HTTPCookieStorage.shared
+        for cookie in cookieStore.cookies ?? [] {
+            print(cookie)
+            cookieStore.deleteCookie(cookie)
+        }
+    }
 }

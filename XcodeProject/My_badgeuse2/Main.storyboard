@@ -92,16 +92,13 @@
                     <navigationItem key="navigationItem" title="Home" id="JNu-rW-E0H">
                         <barButtonItem key="rightBarButtonItem" title="Deconnection" id="dRI-XK-Az4">
                             <connections>
-                                <action selector="decoButton:" destination="zVa-qS-aUE" id="zrL-XA-efc"/>
-                                <segue destination="d0q-Zz-RXJ" kind="unwind" unwindAction="unwindAll:" id="yBs-kC-ELQ"/>
+                                <action selector="decoButton:" destination="zVa-qS-aUE" id="oJc-ec-yeQ"/>
+                                <segue destination="d0q-Zz-RXJ" kind="unwind" unwindAction="unwindAll:" id="LBe-68-99q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
-                    <connections>
-                        <outlet property="ButtonSend" destination="Ep4-zi-FcH" id="l79-G3-fgw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6l-B4-8YW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="d0q-Zz-RXJ" userLabel="Exit" sceneMemberID="exit"/>
@@ -252,7 +249,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mot de pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgj-rm-yW3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mot de passe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgj-rm-yW3">
                                 <rect key="frame" x="20" y="552" width="200" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -275,7 +272,7 @@
                                     <action selector="connection:" destination="Ine-j2-Z57" eventType="touchUpInside" id="MKB-fv-iGI"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login ou mot de pass incorecte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJI-jD-4Dh">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login ou mot de passe incorecte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJI-jD-4Dh">
                                 <rect key="frame" x="206" y="241" width="356" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>

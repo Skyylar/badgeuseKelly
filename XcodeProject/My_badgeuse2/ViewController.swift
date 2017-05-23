@@ -64,6 +64,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Buton to deconnect
     @IBAction func decoButton(_ sender: Any) {
+        print("oui")
         nbconnection.countco = 1
         
         // Clear cokies stored at connection
