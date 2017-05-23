@@ -49,7 +49,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promotion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-VC-4HS">
                                         <rect key="frame" x="302.5" y="0.0" width="163" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                        <color key="textColor" red="0.1068160938" green="0.8254362261" blue="0.14436727269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.3358018696308136" green="0.65602374076843262" blue="0.69713276624679565" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zA-ZN-mBz">
@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="-593.75" y="413.671875"/>
         </scene>
-        <!--Closed-->
+        <!--Close compte-->
         <scene sceneID="0xe-8v-chh">
             <objects>
                 <tableViewController id="75u-sy-a9M" customClass="CloseComptController" customModule="My_badgeuse2" customModuleProvider="target" sceneMemberID="viewController">
@@ -182,6 +182,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Closed" image="close" id="IuO-ec-zyX"/>
+                    <navigationItem key="navigationItem" title="Close compte" id="dce-I0-ZRO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lft-pa-pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -370,11 +371,11 @@
             </objects>
             <point key="canvasLocation" x="2177" y="476"/>
         </scene>
-        <!--Item-->
+        <!--Retard-->
         <scene sceneID="7iW-85-YYV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ih0-6e-7av" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="horloge2" id="GVN-gQ-HDp"/>
+                    <tabBarItem key="tabBarItem" title="Retard" image="horloge2" id="GVN-gQ-HDp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lej-pw-P2k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

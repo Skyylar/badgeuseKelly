@@ -75,6 +75,7 @@ class TableViewController: UITableViewController {
             do {
                 let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
                 // Implement THE new Code HERE
+                //self.performSegue(withIdentifier: "showlate", sender: self)
                 print(myHTMLString)
                 // END of the Code
                 

@@ -10,10 +10,9 @@ import UIKit
 
 class LoginController: UIViewController {
     
-    
     @IBOutlet weak var inputLogin: UITextField!
     @IBOutlet weak var inputPassword: UITextField!
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 30))
+    @IBOutlet weak var errorLog: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +23,11 @@ class LoginController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func unwindAll (_: UIStoryboardSegue) {
+    @IBAction func unwindAll (_ : UIStoryboardSegue) {
     
     }
     
-    @IBOutlet weak var errorLog: UILabel!
-    
     @IBAction func connection(_ sender: Any) {
-        
         let userLogin: String = inputLogin.text!
         let userPass:  String = inputPassword.text!
         

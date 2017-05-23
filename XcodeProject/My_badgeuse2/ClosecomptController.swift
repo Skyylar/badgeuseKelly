@@ -11,7 +11,7 @@ import UIKit
 
 class CloseComptController: UITableViewController {
 
-    let empty: [String] = ["No one closed"]
+    let empty: [String] = ["Aucun close"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
