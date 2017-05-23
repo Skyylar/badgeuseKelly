@@ -74,9 +74,20 @@ class TableViewController: UITableViewController {
             
             do {
                 let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
-                // Implement THE new Code HERE
-                //self.performSegue(withIdentifier: "showlate", sender: self)
-                print(myHTMLString)
+                //THE new Code HERE
+                var wall_late: Array<Any> = []
+                
+                var StringRecordedArr = myHTMLString?.components(separatedBy: " ")
+                var x = 0
+                //GET ALL student in one ARRAY
+                for test in StringRecordedArr! {
+                    if test == "" {
+                        x = x + 1
+                    }
+                    else {
+                        wall_late.append(test)
+                    }
+                }
                 // END of the Code
                 
             } catch let error {
@@ -84,32 +95,18 @@ class TableViewController: UITableViewController {
             }
         })
         task.resume()
-
-        /*if let myURL = NSURL(string: myURLString) {
-            do {
-                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
-                var StringRecordedArr = myHTMLString.components(separatedBy: " ")
-                var x = 0
-                for close in StringRecordedArr {
-                    if close == "" {
-                        StringRecordedArr.remove(at: x)
-                        x = x + 1
-                    }
-                    else {
-                        x = x + 1
-                    }
-                }
-                
-                //StringRecordedArr is the FINAL ARRAY
-                promosForLate.choosen = StringRecordedArr
-                
-            } catch {
-                print(error)
-            }
-            self.performSegue(withIdentifier: "showlate", sender: self)
-        }
-        else {
-            print("nope")
-        }*/
+        
+        /*
+         StringRecordedArr is the FINAL ARRAY
+         promosForLate.choosen = StringRecordedArr
+         
+         } catch {
+         print(error)
+         }
+         self.performSegue(withIdentifier: "showlate", sender: self)
+         }
+         else {
+         print("nope")
+         }*/
     }
 }
