@@ -53,8 +53,38 @@ class TableViewController: UITableViewController {
         
         let bool = false
         let myURLString = "http://178.62.123.239/badgeuse/api.php?badgeuse=\(bool)&promo=\(promo3)"
+        let url = URL(string: myURLString)!
         
-        if let myURL = NSURL(string: myURLString) {
+        let session = URLSession.shared
+        
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            
+            guard error == nil else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
+                // Implement THE new Code HERE
+                print(myHTMLString)
+                // END of the Code
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+
+        /*if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
                 var StringRecordedArr = myHTMLString.components(separatedBy: " ")
@@ -79,6 +109,6 @@ class TableViewController: UITableViewController {
         }
         else {
             print("nope")
-        }
+        }*/
     }
 }
