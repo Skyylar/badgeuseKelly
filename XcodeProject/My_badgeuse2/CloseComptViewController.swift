@@ -22,11 +22,8 @@ class CloseComptViewController: UIViewController {
                 var promo1 = String((promo as! String).characters.filter {$0 != "-"})
                 var promo2 = String(promo1.characters.filter {$0 != " "})
                 let promo3 = String(promo2.characters.filter {$0 != "'"})
-                
                 let myURLString = "http://178.62.123.239/badgeuse/api.php?closecompte=true&promo=\(promo3)"
-                
                 let url = URL(string: myURLString)!
-                
                 let urlconfig = URLSessionConfiguration.default
                 urlconfig.timeoutIntervalForRequest = 5
                 urlconfig.timeoutIntervalForResource = 20
@@ -34,7 +31,6 @@ class CloseComptViewController: UIViewController {
                 //now create the URLRequest object using the url object
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST" //set http method as POST
-                
                 //create dataTask using the session object to send data to the server
                 let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                     
@@ -45,8 +41,6 @@ class CloseComptViewController: UIViewController {
                     guard let data = data else {
                         return
                     }
-                    
-                    do {
                         let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
                         // THE NEW code HERE
                         let StringRecorded = myHTMLString?.components(separatedBy: " ")
@@ -61,18 +55,11 @@ class CloseComptViewController: UIViewController {
                             }
                         }
                         print(wall_close)
-                        // END OF the NEW CODE
-                        
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
                 })
                 task.resume()
-                
             }
             whoAreClosed.imClose = wall_close
             self.performSegue(withIdentifier: "imClose", sender: self)
-            
         }
         else {
             self.performSegue(withIdentifier: "imClose", sender: self)

@@ -66,26 +66,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func decoButton(_ sender: Any) {
         print("oui")
         nbconnection.countco = 1
-        
-        // Clear cokies stored at connection
+        // Clear cokies stored axt connection
         let cookieStore = HTTPCookieStorage.shared
         for cookie in cookieStore.cookies ?? [] {
             print(cookie)
             cookieStore.deleteCookie(cookie)
         }
     }
-  
-   // @IBAction func	exitButton(sender : UIStoryboardSegue) {
-//        nbconnection.countco = 1
-        // Clear cokies stored at connection
-     //           let cookieStore = HTTPCookieStorage.shared
-       //         for cookie in cookieStore.cookies ?? [] {
-         //           print(cookie)
-           //         cookieStore.deleteCookie(cookie)
-             //   }
-               // self.performSegue(withIdentifier: "LoginView", sender: self)
-//        self.navigationController?.popViewController(animated: true)
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         if (nbconnection.countco == 1) {
