@@ -19,6 +19,7 @@
 		939896101EA90EBD00D2F742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9398960F1EA90EBD00D2F742 /* LaunchScreen.storyboard */; };
 		93B05EB71EA76B8F003742F4 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B05EB61EA76B8F003742F4 /* LoadingController.swift */; };
 		93CE90121E9E0635001DDF36 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CE90111E9E0635001DDF36 /* LoginController.swift */; };
+		CDD6C9F91ED5784800A2A28A /* LatestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6C9F81ED5784800A2A28A /* LatestViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		9398960F1EA90EBD00D2F742 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93B05EB61EA76B8F003742F4 /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		93CE90111E9E0635001DDF36 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		CDD6C9F81ED5784800A2A28A /* LatestViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				939896011EA8C36D00D2F742 /* LatestudentsView2.swift */,
 				939896031EA8D96700D2F742 /* ClosecomptController.swift */,
 				939896051EA8DB4E00D2F742 /* CloseComptViewController.swift */,
+				CDD6C9F81ED5784800A2A28A /* LatestViewCell.swift */,
 			);
 			path = My_badgeuse2;
 			sourceTree = "<group>";
@@ -117,7 +120,7 @@
 				TargetAttributes = {
 					936AE0D41E9D64DD00D4D789 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2M24BU3F66;
+						DevelopmentTeam = YK484PCHX3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -165,6 +168,7 @@
 				939896041EA8D96700D2F742 /* ClosecomptController.swift in Sources */,
 				939896001EA89B7700D2F742 /* LatePromosController.swift in Sources */,
 				936AE0DB1E9D64DD00D4D789 /* ViewController.swift in Sources */,
+				CDD6C9F91ED5784800A2A28A /* LatestViewCell.swift in Sources */,
 				93CE90121E9E0635001DDF36 /* LoginController.swift in Sources */,
 				936AE0D91E9D64DD00D4D789 /* AppDelegate.swift in Sources */,
 			);
@@ -270,14 +274,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2M24BU3F66;
+				DEVELOPMENT_TEAM = YK484PCHX3;
 				INFOPLIST_FILE = My_badgeuse2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bailli-k.My-badgeuse2";
+				PRODUCT_BUNDLE_IDENTIFIER = Mybadgeuse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -285,14 +289,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2M24BU3F66;
+				DEVELOPMENT_TEAM = YK484PCHX3;
 				INFOPLIST_FILE = My_badgeuse2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bailli-k.My-badgeuse2";
+				PRODUCT_BUNDLE_IDENTIFIER = Mybadgeuse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

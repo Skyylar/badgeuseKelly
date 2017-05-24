@@ -27,8 +27,10 @@ class CloseComptViewController: UIViewController {
                 
                 let url = URL(string: myURLString)!
                 
-                let session = URLSession.shared
-                
+                let urlconfig = URLSessionConfiguration.default
+                urlconfig.timeoutIntervalForRequest = 5
+                urlconfig.timeoutIntervalForResource = 20
+                let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
                 //now create the URLRequest object using the url object
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST" //set http method as POST

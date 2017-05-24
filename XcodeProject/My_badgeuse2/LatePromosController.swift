@@ -10,6 +10,7 @@ import UIKit
 
 struct promosForLate {
     static var choosen: Array<Any> = []
+    static var name: String = ""
 }
 
 class TableViewController: UITableViewController {
@@ -84,7 +85,7 @@ class TableViewController: UITableViewController {
                 }
             }
             promosForLate.choosen = StringRecordedArr!
-            print("gref")
+            promosForLate.name = promo3
             self.performSegue(withIdentifier: "showlate", sender: nil)
             // END of the Code
         })

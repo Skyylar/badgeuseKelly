@@ -16,6 +16,30 @@ class TableView2Controller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func sendCSV(_ sender: Any) {
+        let myURLString = "http://178.62.123.239/badgeuse/api.php?send=true&promo=\(promosForLate.name)"
+        let url = URL(string: myURLString)!
+        let urlconfig = URLSessionConfiguration.default
+        urlconfig.timeoutIntervalForRequest = 5
+        urlconfig.timeoutIntervalForResource = 20
+        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            
+            guard error == nil else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
+            print(myHTMLString!)
+        })
+        task.resume()
+    }
 
     // Set number of labels
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,18 +47,20 @@ class TableView2Controller: UITableViewController {
             return empty.count
         }
         else {
-            return promosForLate.choosen.count
+            return promosForLate.choosen.count - 1
         }
     }
     
     // Fill labels with informations
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LatestViewCell  else {
+            fatalError("The dequeued cell is not an instance of LatestViewCell.")
+        }
         if (promosForLate.choosen.isEmpty) {
-            cell.textLabel?.text = self.empty[indexPath.row]
+            cell.loginLabel.text = self.empty[indexPath.row]
         }
         else {
-            cell.textLabel?.text = promosForLate.choosen[indexPath.row] as? String
+            cell.loginLabel.text = promosForLate.choosen[indexPath.row] as? String
         }
         return cell
     }
