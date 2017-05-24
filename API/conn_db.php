@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost";
-$username = user;
-$password = password;
+$username = your_user;
+$password = your_password;
 $dbname = "api_badgeuse";
 try {
     $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(
