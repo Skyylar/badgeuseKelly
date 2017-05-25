@@ -108,7 +108,7 @@ class TableViewController: UITableViewController {
             promosForLate.miss = wall_missed
         })
         task.resume()
-        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        let when = DispatchTime.now() + 3 // change 2 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.performSegue(withIdentifier: "showlate", sender: nil)
         }
