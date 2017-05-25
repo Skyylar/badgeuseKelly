@@ -31,44 +31,45 @@ class LoadingController: UIViewController {
                         print("error")
                     }
                     else {
-                        do {
-                            let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String : AnyObject]
-                            
-                            var x = 2017
-                            var wall: Array<Any> = []
-                            var id: Array<Int> = []
-                            var tmp: String = "t"
-                            
-                            while (x < 2022) {
-                                let test = (json["\(x)"] as! NSArray)
-                                for trombi in test {
-                                    let jsonData = try JSONSerialization.data(withJSONObject: trombi, options: JSONSerialization.WritingOptions.prettyPrinted)
-                                    var date = try JSONSerialization.jsonObject(with: jsonData, options:.allowFragments) as! [String : AnyObject]
-                                    
-                                    let wall_name: String = date["wall_name"] as! String
-                                    if tmp != wall_name {
-                                        
-                                        // GET WALL NAME
-                                        wall.append(date["wall_name"]!)
-                                        
-                                        // Get ID
-                                        id.append(date["id"] as! Int)
-                                        tmp = wall_name
-                                    }
-                                }
-                                x = x + 1
-                            }
-                            promoSelected.promotab = wall
-                            promoSelected.idpromotab = id
-                        }
-                        catch let error as NSError{
-                            print(error)
-                        }
+                       self.fillAllName(data: data!)
                     }
                 }).resume()
             }
         }
         
+    }
+    
+    func fillAllName (data : Data) {
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options:.allowFragments) as! [String : AnyObject]
+            var x = 2017
+            var wall: Array<Any> = []
+            var id: Array<Int> = []
+            var tmp: String = "t"
+            while (x < 2022) {
+                let test = (json["\(x)"] as! NSArray)
+                for trombi in test {
+                    let jsonData = try JSONSerialization.data(withJSONObject: trombi, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    var date = try JSONSerialization.jsonObject(with: jsonData, options:.allowFragments) as! [String : AnyObject]
+                    let wall_name: String = date["wall_name"] as! String
+                    if tmp != wall_name {
+                        
+                        // GET WALL NAME
+                        wall.append(date["wall_name"]!)
+
+                        // Get ID
+                        id.append(date["id"] as! Int)
+                        tmp = wall_name
+                    }
+                }
+                x = x + 1
+            }
+            promoSelected.promotab = wall
+            promoSelected.idpromotab = id
+        }
+        catch let error as NSError{
+            print(error)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

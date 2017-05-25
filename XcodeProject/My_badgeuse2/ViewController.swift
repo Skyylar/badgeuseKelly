@@ -39,7 +39,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Set labels of pickerview
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return promoSelected.promotab[row] as! String
+        return promoSelected.promotab[row] as? String
     }
     
     // Set number of labels
