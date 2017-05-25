@@ -14,14 +14,8 @@ class LatestViewCell: UITableViewCell {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var lateLabel: UILabel!
     @IBOutlet weak var absentLabel: UILabel!
-    
-    @IBAction func justifyButton(_ sender: Any) {
-        
-    }
-    
-    @IBAction func absentButton(_ sender: Any) {
-    }
-    
+    @IBOutlet weak var justifyButton: UIButton!
+    @IBOutlet weak var missingButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

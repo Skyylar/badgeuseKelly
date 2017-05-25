@@ -60,8 +60,48 @@ class TableView2Controller: UITableViewController {
             cell.loginLabel.text = promosForLate.choosen[indexPath.row] as? String
             cell.lateLabel.text = promosForLate.late[indexPath.row] as? String
             cell.absentLabel.text = promosForLate.miss[indexPath.row] as? String
+            cell.justifyButton.tag = indexPath.row
+            cell.justifyButton.addTarget(self, action: #selector(self.justifyAction(sender:)), for: .touchUpInside)
+            cell.missingButton.tag = indexPath.row
+            cell.missingButton.addTarget(self, action: #selector(self.missingAction(sender:)), for: .touchUpInside)
         }
         return cell
+    }
+    
+    func missingAction(sender : AnyObject) {
+        let myURLString = "http://178.62.123.239/api/api.php?missed=true&promo=\(promosForLate.name)&login=\(promosForLate.choosen[sender.tag])"
+        let url = URL(string: myURLString)!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            guard error == nil else {
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            _ = String(data: data, encoding: String.Encoding.utf8)
+        })
+        task.resume()
+    }
+    
+    func justifyAction(sender : AnyObject) {
+        let myURLString = "http://178.62.123.239/api/api.php?noproblem=true&promo=\(promosForLate.name)&login=\(promosForLate.choosen[sender.tag])"
+        let url = URL(string: myURLString)!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            guard error == nil else {
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            _ = String(data: data, encoding: String.Encoding.utf8)
+        })
+        task.resume()
     }
     
     func csvAlert() {

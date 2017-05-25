@@ -9,10 +9,10 @@
 import UIKit
 
 struct promosForLate {
-    static var choosen : Array<Any> = []
-    static var name : String = ""
-    static var late : Array<Any> = []
-    static var miss : Array<Any> = []
+    static var choosen  : Array<Any> = []
+    static var name     : String     = ""
+    static var late     : Array<Any> = []
+    static var miss     : Array<Any> = []
 }
 
 class TableViewController: UITableViewController {
@@ -106,8 +106,12 @@ class TableViewController: UITableViewController {
             promosForLate.name = promo3
             promosForLate.late = wall_late
             promosForLate.miss = wall_missed
-            self.performSegue(withIdentifier: "showlate", sender: nil)
         })
         task.resume()
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.performSegue(withIdentifier: "showlate", sender: nil)
+        }
+
     }
 }

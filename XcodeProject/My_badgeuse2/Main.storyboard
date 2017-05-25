@@ -357,28 +357,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vms-ot-4pi">
-                                            <rect key="frame" x="339" y="5" width="46" height="22"/>
+                                            <rect key="frame" x="339" y="3" width="44" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6K-QE-ccU">
-                                            <rect key="frame" x="464" y="5" width="45" height="22"/>
+                                            <rect key="frame" x="463" y="3" width="45" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ls-nz-I4Z">
-                                            <rect key="frame" x="576" y="-1" width="68" height="34"/>
+                                            <rect key="frame" x="576" y="-2" width="68" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Présent">
                                                 <color key="titleColor" red="0.1068160938" green="0.8254362261" blue="0.14436727269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <connections>
-                                                <action selector="justifyButton:" destination="Ic4-me-phW" eventType="touchUpInside" id="ciE-JS-q85"/>
-                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bz-Y9-F1Q">
                                             <rect key="frame" x="34" y="12" width="187" height="21"/>
@@ -388,21 +385,20 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfX-Dr-izh">
-                                            <rect key="frame" x="672" y="-1" width="68" height="34"/>
+                                            <rect key="frame" x="670" y="-2" width="68" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Absent">
                                                 <color key="titleColor" red="1" green="0.0" blue="0.0093617555427760735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <connections>
-                                                <action selector="absentButton:" destination="Ic4-me-phW" eventType="touchUpInside" id="KDd-0Z-MYT"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="absentLabel" destination="y6K-QE-ccU" id="Rtb-nt-I9x"/>
+                                    <outlet property="justifyButton" destination="4ls-nz-I4Z" id="l98-ND-MwY"/>
                                     <outlet property="lateLabel" destination="vms-ot-4pi" id="vSg-tc-n5S"/>
                                     <outlet property="loginLabel" destination="2bz-Y9-F1Q" id="SBt-Ho-tWI"/>
+                                    <outlet property="missingButton" destination="YfX-Dr-izh" id="bVp-TS-3iY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
