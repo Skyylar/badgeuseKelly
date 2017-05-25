@@ -9,8 +9,10 @@
 import UIKit
 
 struct promosForLate {
-    static var choosen: Array<Any> = []
-    static var name: String = ""
+    static var choosen : Array<Any> = []
+    static var name : String = ""
+    static var late : Array<Any> = []
+    static var miss : Array<Any> = []
 }
 
 class TableViewController: UITableViewController {
@@ -53,15 +55,15 @@ class TableViewController: UITableViewController {
         let promo3 = String(promo2.characters.filter {$0 != "'"})
         
         let bool = false
-        let myURLString = "http://178.62.123.239/badgeuse/api.php?badgeuse=\(bool)&promo=\(promo3)"
+        let myURLString = "http://178.62.123.239/api/api.php?badgeuse=\(bool)&promo=\(promo3)"
         let url = URL(string: myURLString)!
-        let urlconfig = URLSessionConfiguration.default
-        urlconfig.timeoutIntervalForRequest = 3
-        urlconfig.timeoutIntervalForResource = 20
-        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
+        
+        let session = URLSession.shared
+        
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url)
         request.httpMethod = "POST" //set http method as POST
+        
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard error == nil else {
@@ -72,7 +74,9 @@ class TableViewController: UITableViewController {
             }
             let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
             //THE new Code HERE
+            var wall_login: Array<Any> = []
             var wall_late: Array<Any> = []
+            var wall_missed: Array<Any> = []
             let StringRecordedArr = myHTMLString?.components(separatedBy: " ")
             var x = 0
             //GET ALL student in one ARRAY
@@ -81,13 +85,28 @@ class TableViewController: UITableViewController {
                     x = x + 1
                 }
                 else {
-                    wall_late.append(test)
+                    wall_login.append(test)
                 }
             }
-            promosForLate.choosen = StringRecordedArr!
+            for student in wall_login
+            {
+                let myURLString2 = "http://178.62.123.239/api/api.php?ls=true&promo=\(promo3)&login=\(student)"
+                if let myURL = NSURL(string: myURLString2) {
+                    do {
+                        let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                        let StringRecordedArr = myHTMLString.components(separatedBy: " ")
+                        wall_late.append(StringRecordedArr[0])
+                        wall_missed.append(StringRecordedArr[1])
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            promosForLate.choosen = wall_login
             promosForLate.name = promo3
+            promosForLate.late = wall_late
+            promosForLate.miss = wall_missed
             self.performSegue(withIdentifier: "showlate", sender: nil)
-            // END of the Code
         })
         task.resume()
     }

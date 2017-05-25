@@ -22,7 +22,7 @@ class CloseComptViewController: UIViewController {
                 var promo1 = String((promo as! String).characters.filter {$0 != "-"})
                 var promo2 = String(promo1.characters.filter {$0 != " "})
                 let promo3 = String(promo2.characters.filter {$0 != "'"})
-                let myURLString = "http://178.62.123.239/badgeuse/api.php?closecompte=true&promo=\(promo3)"
+                let myURLString = "http://178.62.123.239/api/api.php?closecompte=true&promo=\(promo3)"
                 let url = URL(string: myURLString)!
                 let urlconfig = URLSessionConfiguration.default
                 urlconfig.timeoutIntervalForRequest = 5

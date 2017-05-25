@@ -18,12 +18,9 @@ class TableView2Controller: UITableViewController {
     }
     
     @IBAction func sendCSV(_ sender: Any) {
-        let myURLString = "http://178.62.123.239/badgeuse/api.php?send=true&promo=\(promosForLate.name)"
+        let myURLString = "http://178.62.123.239/api/api.php?send=true&promo=\(promosForLate.name)"
         let url = URL(string: myURLString)!
-        let urlconfig = URLSessionConfiguration.default
-        urlconfig.timeoutIntervalForRequest = 5
-        urlconfig.timeoutIntervalForResource = 20
-        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
+        let session = self.initSession()
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -35,8 +32,8 @@ class TableView2Controller: UITableViewController {
             guard let data = data else {
                 return
             }
-            let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
-            print(myHTMLString!)
+            _ = String(data: data, encoding: String.Encoding.utf8)
+            self.csvAlert()
         })
         task.resume()
     }
@@ -61,8 +58,24 @@ class TableView2Controller: UITableViewController {
         }
         else {
             cell.loginLabel.text = promosForLate.choosen[indexPath.row] as? String
+            cell.lateLabel.text = promosForLate.late[indexPath.row] as? String
+            cell.absentLabel.text = promosForLate.miss[indexPath.row] as? String
         }
         return cell
     }
+    
+    func csvAlert() {
+        let alertController = UIAlertController(title: "Alert", message: "CSV envoyé", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
+    func initSession () -> URLSession {
+        let urlconfig = URLSessionConfiguration.default
+        urlconfig.timeoutIntervalForRequest = 5
+        urlconfig.timeoutIntervalForResource = 20
+        let session = URLSession(configuration : urlconfig, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
+        return session
+    }
 }
