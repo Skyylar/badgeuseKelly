@@ -33,36 +33,34 @@ class CloseComptViewController: UIViewController {
                 request.httpMethod = "POST" //set http method as POST
                 //create dataTask using the session object to send data to the server
                 let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-                    
                     guard error == nil else {
                         return
                     }
-                    
                     guard let data = data else {
                         return
                     }
-                        let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
-                        // THE NEW code HERE
-                        let StringRecorded = myHTMLString?.components(separatedBy: " ")
-                        var x = 0
-                        //GET ALL student in one ARRAY
-                        for test in StringRecorded! {
-                            if test == "" {
-                                x = x + 1
-                            }
-                            else {
-                                wall_close.append(test)
-                            }
+                    let myHTMLString = String(data: data, encoding: String.Encoding.utf8)
+                    // THE NEW code HERE
+                    let StringRecorded = myHTMLString?.components(separatedBy: " ")
+                    var x = 0
+                    //GET ALL student in one ARRAY
+                    for test in StringRecorded! {
+                        if test == "" {
+                            x = x + 1
                         }
-                        print(wall_close)
-                })
+                        else {
+                            wall_close.append(test)
+                        }
+                    }
+                    print(wall_close)
+                    whoAreClosed.imClose = wall_close
+                    })
                 task.resume()
+                }
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.performSegue(withIdentifier: "imClose", sender: self)
             }
-            whoAreClosed.imClose = wall_close
-            self.performSegue(withIdentifier: "imClose", sender: self)
-        }
-        else {
-            self.performSegue(withIdentifier: "imClose", sender: self)
         }
     }
     
@@ -70,9 +68,6 @@ class CloseComptViewController: UIViewController {
         super.viewDidAppear(true)
         if !whoAreClosed.imClose.isEmpty {
             self.performSegue(withIdentifier: "imClose", sender: self)
-        }
-        else {
-         viewDidLoad()
         }
     }
     
