@@ -4,10 +4,14 @@ CREATE DATABASE IF NOT EXISTS api_badgeuse
 
 USE api_badgeuse;
 CREATE TABLE IF NOT EXISTS Profil (
+  `ID`		       
   `Login`              VARCHAR(40)  NOT NULL,
   `Nom`                VARCHAR(100) NOT NULL,
   `Prenom`             VARCHAR(100) NOT NULL,
   `close`              VARCHAR(10)  NOT NULL,
+  `Retard`	       INT,
+  `Absence`	       INT,
   `Heure_badgeuse`     TIME, 
-  `Date`	       DATE
+  `Date`	       DATE,
+   UNIQUE (Login)
 );
